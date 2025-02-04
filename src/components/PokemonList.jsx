@@ -4,27 +4,19 @@ import MOCK_DATA from "../data/MOCK_DATA";
 
 const ListContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12.8px;
   justify-content: center;
-  padding: 20px;
-  margin: 0 auto; 
-  height: 100vh;
-  max-width: 1200px;
+  border: 7px solid;
+  border-radius: 20px;
+  border-color:#3d4baa;
 `;
 
-const PokemonList = () => {
+const PokemonList = ({ addPokemon }) => {
   return (
     <ListContainer>
       {MOCK_DATA.map((pokemon) => (
-        <PokemonCard
-          key={pokemon.id}
-          korean_name={pokemon.korean_name}
-          img_url={pokemon.img_url}
-          types={pokemon.types}
-          id={pokemon.id}
-          description={pokemon.description}
-        />
+        <PokemonCard key={pokemon.id} pokemon={pokemon} addPokemon={addPokemon} />
       ))}
     </ListContainer>
   );

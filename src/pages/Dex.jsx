@@ -1,17 +1,21 @@
-import styled from "styled-components";
+import { useState } from "react";
 import PokemonList from "../components/PokemonList";
-
-const DexContainer = styled.div`
-  text-align: center;
-  padding: 20px;
-`;
+import Dashboard from "../components/Dashboard";
 
 function Dex() {
+  const [addedPokemons, setAddedPokemons] = useState([]);
+
+  const addPokemon = (pokemon) => {
+    if (!addedPokemons.some((p) => p.id === pokemon.id)) {
+      setAddedPokemons([...addedPokemons, pokemon]);
+    }
+  };
+
   return (
-    <DexContainer>
-      <h1>포켓몬 도감</h1>
-      <PokemonList />
-    </DexContainer>
+    <div>
+      <Dashboard addedPokemons={addedPokemons} />
+      <PokemonList addPokemon={addPokemon} />
+    </div>
   );
 }
 
