@@ -11,7 +11,7 @@ PokemonDetail 컴포넌트를 생성하여, queryString으로 전달받은 포
 react + vite
 
 주요 기능 
-- rop drilling
-- Context API
+- Context API 로 prop drilling 제거 및 전역 상태 관리 구현
 - React-router-dom 을 활용한 라우팅 구현
--  CRUD : create 생성, update 업데이트, delete 삭제 기능 구현
+- Dashboard에 카드 추가 및 삭제 기능 구현
+- PokemonCard를 눌러 디테일 페이지 이동 구현 및 뒤로 가기 버튼으로 이전 페이지 이동 구현
