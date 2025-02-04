@@ -1,26 +1,17 @@
-import { useEffect, useState } from "react";
+import styled from "styled-components";
+import PokemonList from "../components/PokemonList";
+
+const DexContainer = styled.div`
+  text-align: center;
+  padding: 20px;
+`;
 
 function Dex() {
-  const [pokemonList, setPokemonList] = useState([]);
-
-  useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon")
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemonList(data.results);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
-
   return (
-    <div>
-      <h1>Pokedex</h1>
-      <ul>
-        {pokemonList.map((pokemon, index) => (
-          <li key={index}>{pokemon.name}</li>
-        ))}
-      </ul>
-    </div>
+    <DexContainer>
+      <h1>포켓몬 도감</h1>
+      <PokemonList />
+    </DexContainer>
   );
 }
 
