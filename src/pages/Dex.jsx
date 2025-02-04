@@ -4,7 +4,7 @@ function Dex() {
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=20") // 20마리 가져오기
+    fetch("https://pokeapi.co/api/v2/pokemon")
       .then((response) => response.json())
       .then((data) => {
         setPokemonList(data.results);
