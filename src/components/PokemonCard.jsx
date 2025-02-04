@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const Card = styled.div`
   background: white;
@@ -7,26 +6,41 @@ const Card = styled.div`
   padding: 20px;
   text-align: center;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  width: 150px;
+  width: 180px;
 `;
 
 const PokemonImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
 `;
 
-function PokemonCard({ name, image }) {
+const PokemonName = styled.h3`
+  font-size: 18px;
+  margin: 10px 0;
+`;
+
+const AddButton = styled.button`
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  &:hover {
+    background: darkred;
+  }
+`;
+
+const PokemonCard = ({ korean_name, img_url, id }) => {
   return (
     <Card>
-      <PokemonImage src={image} alt={name} />
-      <h3>{name}</h3>
+      <PokemonImage src={img_url} alt={korean_name} />
+      <PokemonName>{korean_name}</PokemonName>
+      <p>No. {id}</p>
+      <AddButton>추가</AddButton>
     </Card>
   );
-}
-
-PokemonCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
 };
 
 export default PokemonCard;
