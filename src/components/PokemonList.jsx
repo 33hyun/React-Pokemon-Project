@@ -10,6 +10,7 @@ const ListContainer = styled.div`
   border: 7px solid;
   border-radius: 20px;
   border-color:#3d4baa;
+  margin-top: 23px;
 `;
 
 const PokemonList = ({ addPokemon }) => {
