@@ -8,6 +8,11 @@ const Card = styled.div`
   width: 150px;
   margin: 0 auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const PokemonImage = styled.img`
@@ -15,7 +20,7 @@ const PokemonImage = styled.img`
   height: 100px;
 `;
 
-const AddButton = styled.button`
+const ActionButton = styled.button`
   background: red;
   color: white;
   border: none;
@@ -23,15 +28,20 @@ const AddButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const PokemonCard = ({ pokemon, addPokemon }) => {
+const PokemonCard = ({ pokemon, addPokemon, removePokemon, isDashboard }) => {
   return (
     <Card>
       <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
       <h3>{pokemon.korean_name}</h3>
       <p>No. {pokemon.id.toString().padStart(3, "0")}</p>
-      <AddButton onClick={() => addPokemon(pokemon)}>추가</AddButton>
+      <ActionButton onClick={() => (isDashboard ? removePokemon(pokemon.id) : addPokemon(pokemon))}>
+        {isDashboard ? "삭제" : "추가"}
+      </ActionButton>
     </Card>
   );
 };

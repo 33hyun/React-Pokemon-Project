@@ -1,11 +1,10 @@
-import { useState } from "react";
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 
 const DashboardContainer = styled.div`
   margin-top: 20px;
   padding: 20px;
-  background:#eff9c0;
+  background: #eff9c0;
   border-radius: 10px;
   margin: 0 auto;
   height: 370px;
@@ -57,24 +56,46 @@ const CardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 `;
 
-const Dashboard = ({ addedPokemons }) => {
-  const slots = new Array(6).fill(null);
-  if (addedPokemons.length > 6) {
-    alert("포켓몬은 최대 6마리까지만 추가할 수 있습니다.");
-  } 
+const Dashboard = ({ addedPokemons, setAddedPokemons }) => {
+  const addPokemon = (pokemon) => {
+    setAddedPokemons((prev) => {
+      if (prev.length >= 6) {
+        alert("6마리까지만 추가 가능합니다.");
+        return prev; 
+      }
+      if (prev.some((p) => p.id === pokemon.id)) {
+        alert("이미 추가된 포켓몬입니다.");
+        return prev; 
+      }
+      return [...prev, pokemon]; 
+    });
+  };
+
+  // 포켓몬 삭제 기능
+  const removePokemon = (id) => {
+    setAddedPokemons((prev) => prev.filter((pokemon) => pokemon.id !== id));
+  };
 
   return (
     <DashboardContainer>
       <Title>나만의 포켓몬</Title>
       <BallContainer>
-        {slots.map((_, index) => (
+        {new Array(6).fill(null).map((_, index) => (
           <PokeballSlot key={index}>
-            <PokeballImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/440px-Pokebola-pokeball-png-0.png" alt="pokeball" />
+            <PokeballImage
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/440px-Pokebola-pokeball-png-0.png"
+              alt="pokeball"
+            />
             {addedPokemons[index] && (
               <CardContainer>
-                <PokemonCard pokemon={addedPokemons[index]} />
+                <PokemonCard
+                  pokemon={addedPokemons[index]}
+                  removePokemon={removePokemon}
+                  isDashboard={true}
+                />
               </CardContainer>
             )}
           </PokeballSlot>
