@@ -1,10 +1,13 @@
+import { useState } from "react";
 import PokemonList from "../components/PokemonList";
 import Dashboard from "../components/Dashboard";
 
-function Dex({ addedPokemons, setAddedPokemons }) {
+function Dex() {
+  const [addedPokemons, setAddedPokemons] = useState([]);
+
   const addPokemon = (pokemon) => {
     setAddedPokemons((prev) => {
-      if (prev.length >= 6) {
+      if (prev.length === 6) {
         alert("6마리까지만 추가 가능합니다.");
         return prev;
       }
@@ -16,9 +19,13 @@ function Dex({ addedPokemons, setAddedPokemons }) {
     });
   };
 
+  const removePokemon = (id) => {
+    setAddedPokemons((prev) => prev.filter((pokemon) => pokemon.id !== id));
+  };
+
   return (
     <div>
-      <Dashboard addedPokemons={addedPokemons} setAddedPokemons={setAddedPokemons} />
+      <Dashboard addedPokemons={addedPokemons} removePokemon={removePokemon} />
       <PokemonList addPokemon={addPokemon} />
     </div>
   );

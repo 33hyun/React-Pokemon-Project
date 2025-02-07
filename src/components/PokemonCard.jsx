@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -13,6 +14,7 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 const PokemonImage = styled.img`
@@ -34,12 +36,19 @@ const ActionButton = styled.button`
 `;
 
 const PokemonCard = ({ pokemon, addPokemon, removePokemon, isDashboard }) => {
+  const navigate = useNavigate();
+
   return (
-    <Card>
+    <Card onClick={() => navigate(`/detail/${pokemon.id}`)}>
       <PokemonImage src={pokemon.img_url} alt={pokemon.korean_name} />
       <h3>{pokemon.korean_name}</h3>
       <p>No. {pokemon.id.toString().padStart(3, "0")}</p>
-      <ActionButton onClick={() => (isDashboard ? removePokemon(pokemon.id) : addPokemon(pokemon))}>
+      <ActionButton
+        onClick={(e) => {
+          e.stopPropagation(); // 이벤트 버블링 방지
+          isDashboard ? removePokemon(pokemon.id) : addPokemon(pokemon);
+        }}
+      >
         {isDashboard ? "삭제" : "추가"}
       </ActionButton>
     </Card>

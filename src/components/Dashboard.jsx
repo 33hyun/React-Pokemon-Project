@@ -8,13 +8,17 @@ const DashboardContainer = styled.div`
   border-radius: 10px;
   margin: 0 auto;
   height: 370px;
-  width: 97%;
+  width: 96%;
+  border: 8px solid #000;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9Lgi7lYjNpDWUpYD37K84mT-QVcvN-8Q_8w&s');
+  background-size: cover %;
+  background-position: center;
 `;
 
 const Title = styled.h2`
   margin-top: 10px;
   text-align: center;
-  color: red;
+  color: black;
   text-shadow: 1px 1px 2px #000;
   font-size: 30px;
 `;
@@ -26,17 +30,14 @@ const BallContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 120px;
-  margin-left: 80px;
+  margin-left: 30px;
 `;
 
 const PokeballSlot = styled.div`
   width: 100px;
   height: 100px;
   position: relative;
-  border-radius: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const PokeballImage = styled.img`
@@ -54,9 +55,9 @@ const CardContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-left: 0px;
 `;
 
 const Dashboard = ({ addedPokemons, setAddedPokemons }) => {
@@ -77,6 +78,7 @@ const Dashboard = ({ addedPokemons, setAddedPokemons }) => {
   // 포켓몬 삭제 기능
   const removePokemon = (id) => {
     setAddedPokemons((prev) => prev.filter((pokemon) => pokemon.id !== id));
+    console.log(removePokemon);
   };
 
   return (
