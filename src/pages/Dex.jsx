@@ -19,13 +19,12 @@ function Dex() {
     });
   };
 
-  const removePokemon = (id) => {
-    setAddedPokemons((prev) => prev.filter((pokemon) => pokemon.id !== id));
-  };
-
   return (
     <div>
-      <Dashboard addedPokemons={addedPokemons} removePokemon={removePokemon} />
+      <Dashboard 
+        addedPokemons={addedPokemons} 
+        setAddedPokemons={setAddedPokemons} 
+      />
       <PokemonList addPokemon={addPokemon} />
     </div>
   );

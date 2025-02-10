@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 const Card = styled.div`
   background: white;
@@ -53,6 +54,16 @@ const PokemonCard = ({ pokemon, addPokemon, removePokemon, isDashboard }) => {
       </ActionButton>
     </Card>
   );
+};
+PokemonCard.propTypes = {
+  pokemon: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    img_url: PropTypes.string.isRequired,
+    korean_name: PropTypes.string.isRequired,
+  }).isRequired,
+  addPokemon: PropTypes.func.isRequired,
+  removePokemon: PropTypes.func.isRequired,
+  isDashboard: PropTypes.bool.isRequired,
 };
 
 export default PokemonCard;

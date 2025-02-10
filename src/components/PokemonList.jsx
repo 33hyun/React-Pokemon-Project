@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 import PokemonCard from "./PokemonCard";
 import MOCK_DATA from "../data/MOCK_DATA";
 
@@ -21,6 +22,9 @@ const PokemonList = ({ addPokemon }) => {
       ))}
     </ListContainer>
   );
+};
+PokemonList.propTypes = {
+  addPokemon: PropTypes.func.isRequired,
 };
 
 export default PokemonList;

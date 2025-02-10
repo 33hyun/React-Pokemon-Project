@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
+import PropTypes from 'prop-types';
 
 const DashboardContainer = styled.div`
   margin-top: 20px;
@@ -61,24 +62,10 @@ const CardContainer = styled.div`
 `;
 
 const Dashboard = ({ addedPokemons, setAddedPokemons }) => {
-  const addPokemon = (pokemon) => {
-    setAddedPokemons((prev) => {
-      if (prev.length >= 6) {
-        alert("6마리까지만 추가 가능합니다.");
-        return prev; 
-      }
-      if (prev.some((p) => p.id === pokemon.id)) {
-        alert("이미 추가된 포켓몬입니다.");
-        return prev; 
-      }
-      return [...prev, pokemon]; 
-    });
-  };
 
   // 포켓몬 삭제 기능
   const removePokemon = (id) => {
     setAddedPokemons((prev) => prev.filter((pokemon) => pokemon.id !== id));
-    console.log(removePokemon);
   };
 
   return (
@@ -105,6 +92,10 @@ const Dashboard = ({ addedPokemons, setAddedPokemons }) => {
       </BallContainer>
     </DashboardContainer>
   );
+};
+Dashboard.propTypes = {
+  addedPokemons: PropTypes.array.isRequired,
+  setAddedPokemons: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
